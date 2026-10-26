@@ -1,0 +1,31 @@
+level,null,detrend,perm,dim,reps,size,mc_se,gate_pass
+tp,iid,trailing,window,TP,500,0.054,0.010107818755794942,True
+tp,iid,trailing,block L=7,TP,500,0.068,0.011258419071965654,False
+tp,iid,trailing,block L=20,TP,500,0.062,0.010784804124322332,True
+tp,iid,global,window,TP,500,0.06,0.010620734437881401,True
+tp,iid,global,block L=7,TP,500,0.056,0.010282412168358162,True
+tp,iid,global,block L=20,TP,500,0.076,0.011851075900524812,False
+tp,AR1(0.5),trailing,window,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.5),trailing,block L=7,TP,500,0.386,0.0217717247823869,False
+tp,AR1(0.5),trailing,block L=20,TP,500,0.186,0.017401379255679705,False
+tp,AR1(0.5),global,window,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.5),global,block L=7,TP,500,0.378,0.02168483340955148,False
+tp,AR1(0.5),global,block L=20,TP,500,0.188,0.01747317944737019,False
+tp,AR1(0.9),trailing,window,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.9),trailing,block L=7,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.9),trailing,block L=20,TP,500,0.864,0.01532997064576446,False
+tp,AR1(0.9),global,window,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.9),global,block L=7,TP,500,1.0,0.009746794344808964,False
+tp,AR1(0.9),global,block L=20,TP,500,0.892,0.013880633991284403,False
+tp,slowAR1(0.98),trailing,window,TP,500,1.0,0.009746794344808964,False
+tp,slowAR1(0.98),trailing,block L=7,TP,500,1.0,0.009746794344808964,False
+tp,slowAR1(0.98),trailing,block L=20,TP,500,0.972,0.0073778045514909145,False
+tp,slowAR1(0.98),global,window,TP,500,1.0,0.009746794344808964,False
+tp,slowAR1(0.98),global,block L=7,TP,500,1.0,0.009746794344808964,False
+tp,slowAR1(0.98),global,block L=20,TP,500,0.982,0.005945754788082,False
+tp,longmem(d=0.3),trailing,window,TP,500,0.994,0.0034536936748935927,False
+tp,longmem(d=0.3),trailing,block L=7,TP,500,0.804,0.01775297158224504,False
+tp,longmem(d=0.3),trailing,block L=20,TP,500,0.37,0.021591665058535898,False
+tp,longmem(d=0.3),global,window,TP,500,1.0,0.009746794344808964,False
+tp,longmem(d=0.3),global,block L=7,TP,500,0.898,0.013534843922262271,False
+tp,longmem(d=0.3),global,block L=20,TP,500,0.482,0.022346185356789647,False

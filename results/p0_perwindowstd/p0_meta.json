@@ -1,0 +1,29 @@
+{
+  "data": "/Users/ekaushik/Downloads/Dynamic-TDA/Epileptic Seizure EEG Dataset",
+  "out": "/Users/ekaushik/Downloads/Dynamic-TDA/results/p0_perwindowstd",
+  "sw": 120,
+  "W": 50,
+  "k_max": 10,
+  "B": 9999,
+  "seed": 2026,
+  "recompute": false,
+  "per_window_std": true,
+  "n_windows": 416,
+  "replication": [
+    1.2308323393914344,
+    1.323583590338271,
+    1.3393479612226324
+  ],
+  "replication_exact": false,
+  "changepoint_window": {
+    "H0": 298,
+    "H1": 346,
+    "H2": 302
+  },
+  "changepoint_sec": {
+    "H0": 357.6,
+    "H1": 415.2,
+    "H2": 362.4
+  },
+  "auto_block_len": 7
+}

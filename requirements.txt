@@ -1,0 +1,9 @@
+# Tested with Python 3.13: numpy 2.5.4, scipy 1.18.1, ripser 0.6.15, persim 0.4.1,
+# hfda 0.1.1, matplotlib 3.11.2. The anchor's HFDs (1.076/1.126/1.212) reproduce exactly.
+numpy>=1.24
+scipy>=1.10
+ripser>=0.6.4
+persim>=0.3.1
+hfda==0.1.1
+tadasets>=0.0.4
+matplotlib>=3.7
