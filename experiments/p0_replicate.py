@@ -153,6 +153,9 @@ def main():
         ax[1, 0].legend(fontsize=8)
         fig.tight_layout()
         fig.savefig(os.path.join(args.out, "p0_eeg.png"), dpi=130)
+        fig_dir = os.path.join(ROOT, "figures", "p0")
+        os.makedirs(fig_dir, exist_ok=True)
+        fig.savefig(os.path.join(fig_dir, f"p0_eeg{'_perwindowstd' if args.per_window_std else ''}.png"), dpi=130)
     except Exception as e:  # plotting is optional
         print("plot skipped:", e)
     print(f"\n[P0] wrote {args.out}/p0_summary.md, p0_results.csv, p0_eeg.png")

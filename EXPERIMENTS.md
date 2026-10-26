@@ -2,13 +2,19 @@
 
 Re-implementation and stress test of El-Yaagoubi, Chung & Ombao (2024),
 *Front. Neuroinform.* 18:1387400. The original notebooks are untouched; the
-experiments live in `experiments/` and write to `results/`.
+experiments live in `experiments/`, tables in `results/`, figures in `figures/`.
 
-| file | what it does |
-|---|---|
-| `experiments/dtda.py` | core pipeline as functions: windows -> Rips PH -> total persistence -> detrend -> CUSUM -> HFD -> permutation test. Anchor choices are the defaults; alternatives are switches (`detrend="global"`, `perm="block"`, per-window amplitude normalization). |
-| `experiments/p0_replicate.py` | **P0**: reproduces the anchor's HFDs on the seizure EEG, then re-tests with block permutation, global-mean centring and Holm across H0-H2; estimates the change time. |
-| `experiments/p1_size.py` | **P1 pilot**: false-alarm rate (size) on data with *no* change: i.i.d., AR(1), slow AR(1), long memory (tp level) and i.i.d./VAR(1)/stochastic-volatility 18-channel signals (full pipeline). |
+| phase | script | question | gaps |
+|---|---|---|---|
+| P0 | `p0_replicate.py` | Do we reproduce the anchor? Does the seizure result survive block permutation, global-mean centring, Holm, amplitude normalization? | G14, G2, G3, G5 |
+| P1 | `p1_size.py` | Does the test keep its 5% false-alarm rate when nothing changes? | G1, G2, G3 |
+| P2 | `p2_power.py` | Size and power of better statistics (self-normalized CUSUM, LRV CUSUM, block-perm CUSUM) vs non-topological baselines | G4, G6, G7 |
+| P3 | `p3_confounds.py` | Is the ictal change beyond spectrum/amplitude (multivariate PT and IAAFT surrogates)? Other summaries and embeddings | G9, G10, G11 |
+| P4 | `p4_sensitivity.py` | Dependence on window length, k_max, W, block length | G12 |
+| P5 | `p5_localization.py` | Change time with bootstrap CI; binary segmentation | G8 |
+| P6 | `p6_chbmit.py` | External validation on a CHB-MIT subset (downloads ~400 MB) | G13 |
+
+Shared code: `dtda.py` (pipeline and all tests), `figs.py` (plots; `python experiments/figs.py` rebuilds P1 figures).
 
 ## Setup (once)
 
@@ -18,33 +24,35 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run
+## Run everything
 
 ```bash
-# P0: replication + re-test (~3 min; total persistence is cached after the first run)
-python experiments/p0_replicate.py
-python experiments/p0_replicate.py --per_window_std      # amplitude-confound check
-
-# P1: size under no change
-python experiments/p1_size.py --level both --quick       # smoke test first (~2 min)
-python experiments/p1_size.py --level tp                 # ~5-10 min
-python experiments/p1_size.py --level signal             # ~10-20 min (H0,H1)
-python experiments/p1_size.py --level signal --per_window_std --nulls stoch.vol   # amplitude fix
+bash run_all.sh            # P0-P6, ~30-40 min on an M-series Mac
+bash run_all.sh --no-p6    # skip the CHB-MIT download
 ```
 
-Every script takes `--help`. Seeds are fixed (`--seed 2026`), so runs are reproducible.
+Or one phase at a time (each script takes `--help`; `--quick` exists for P1/P2):
 
-## Outputs
+```bash
+python experiments/p2_power.py
+python experiments/p3_confounds.py
+python experiments/p4_sensitivity.py
+python experiments/p5_localization.py
+python experiments/p6_chbmit.py
+```
 
-- `results/p0/p0_summary.md`, `p0_results.csv`, `p0_eeg.png`
-- `results/p0_perwindowstd/...` (same, amplitude-normalized)
-- `results/p1/p1_summary_tp.md`, `p1_summary_signal.md`, and CSVs
+Seeds are fixed (`--seed 2026`), so reruns give the same numbers.
+
+## Where things go
+
+- `results/pX/*.md` readable summaries, `results/pX/*.csv` full tables
+- `figures/pX/*.png` all figures
+- `results/_cache/` and `data/` (CHB-MIT downloads) are git-ignored and rebuilt on demand
 
 ## Notes on the anchor code
 
-- Channels used: ch01-ch21 minus SP1 (11), SP2 (12) and Cz (20) = 18 channels; ch22-ch31 are not used.
-- Windows are non-overlapping, 120 samples (1.2 s at 100 Hz) -> 416 windows; the last partial window is dropped.
-- Each window's point cloud is the 120 time points in R^18 (no delay embedding).
-- The notebook builds the permutation null but never computes a p-value; we use the lower tail,
-  p = (1 + #{null HFD <= observed}) / (B + 1).
-- The notebook does not set a random seed.
+- Channels: ch01-ch21 minus SP1 (11), SP2 (12), Cz (20) = 18; ch22-ch31 unused.
+- Non-overlapping 120-sample windows (1.2 s at 100 Hz) -> 416 windows; last partial window dropped.
+- Each window's point cloud is its 120 time points in R^18 (no delay embedding).
+- The notebook builds the permutation null but never computes a p-value; we use the lower tail.
+- The notebook sets no random seed.

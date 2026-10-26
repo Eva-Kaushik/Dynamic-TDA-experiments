@@ -1,0 +1,26 @@
+null,test,reps,size
+iid,"anchor (HFD, window perm)",500,0.062
+iid,"HFD, block perm L=20",500,0.076
+iid,"CUSUM, block perm L=20",500,0.064
+iid,self-normalized CUSUM,500,0.06
+iid,LRV CUSUM (Bartlett),500,0.058
+AR1(0.17) EEG-like,"anchor (HFD, window perm)",500,0.436
+AR1(0.17) EEG-like,"HFD, block perm L=20",500,0.064
+AR1(0.17) EEG-like,"CUSUM, block perm L=20",500,0.042
+AR1(0.17) EEG-like,self-normalized CUSUM,500,0.062
+AR1(0.17) EEG-like,LRV CUSUM (Bartlett),500,0.036
+AR1(0.5),"anchor (HFD, window perm)",500,0.998
+AR1(0.5),"HFD, block perm L=20",500,0.18
+AR1(0.5),"CUSUM, block perm L=20",500,0.078
+AR1(0.5),self-normalized CUSUM,500,0.066
+AR1(0.5),LRV CUSUM (Bartlett),500,0.064
+AR1(0.9),"anchor (HFD, window perm)",500,1.0
+AR1(0.9),"HFD, block perm L=20",500,0.87
+AR1(0.9),"CUSUM, block perm L=20",500,0.164
+AR1(0.9),self-normalized CUSUM,500,0.068
+AR1(0.9),LRV CUSUM (Bartlett),500,0.356
+longmem(d=0.3),"anchor (HFD, window perm)",500,0.996
+longmem(d=0.3),"HFD, block perm L=20",500,0.476
+longmem(d=0.3),"CUSUM, block perm L=20",500,0.322
+longmem(d=0.3),self-normalized CUSUM,500,0.162
+longmem(d=0.3),LRV CUSUM (Bartlett),500,0.468

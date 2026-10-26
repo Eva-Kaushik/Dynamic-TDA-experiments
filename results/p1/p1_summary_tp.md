@@ -1,6 +1,6 @@
 # P1 size check - level: tp
 
-reps=500, B=199, alpha=0.05, n_windows=416, seed=2026, runtime=2.8 min. Cells: rejection rate under NO change (target 5%). ** = outside the 3.5-6.5% gate.
+reps=500, B=199, alpha=0.05, n_windows=416, seed=2026, runtime=2.9 min. Cells: rejection rate under NO change (target 5%). ** = outside the 3.5-6.5% gate.
 
 
 ## TP

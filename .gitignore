@@ -131,3 +131,5 @@ dmypy.json
 # experiment environment
 .venv/
 *.log
+data/
+results/_cache/

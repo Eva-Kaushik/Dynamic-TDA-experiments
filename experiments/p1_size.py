@@ -216,6 +216,11 @@ def main():
                     print(f"   {i+1}/{len(jobs)} done ({time.time()-t0:.0f} s)", flush=True)
         summarize(results, ndims, level + ("_perwindowstd" if level == "signal" and args.per_window_std else ""),
                   a, time.time() - t0)
+    try:
+        from figs import p1_figures
+        p1_figures()
+    except Exception as e:
+        print("P1 figures skipped:", e)
 
 
 if __name__ == "__main__":
